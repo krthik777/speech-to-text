@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>speech to text</title>
+    <style>
+        .buttonstart::onhover{
+            background-color: #31ffba;
+        }
+        .buttonstart{
+            background-color: #0d7011; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .buttonstop{
+            background-color: #a21111; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .buttonclear{
+            background-color: #858585; /* Green */
+            border: none;
+            color: rgb(13, 4, 4);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Speech to Text</h1>
+        <p>Press the button and start speaking</p>
+        <button class="buttonstart" id="startButton">Start</button>
+        <button class="buttonstop" id="stopButton">Stop</button>
+        <br>
+        <br>
+        
+        <div id="text"></div>
+    </div>
+    <span>status:
+        <span id="status">
+        </span>
+    </span>
+    <div>
+        <h1>results here:</h1>
+        <div style="border-color: black;" id="output" name = "out"></div>
+        <button id = "reset" class = "buttonclear" >clear</button>
+    </div>
+    <br><br>
+    <script>
+    document.getElementById('reset').addEventListener('click', function() {
+        document.getElementById("output").innerHTML = "";
+        console.log("cleared");
+    })
+    </script>
+    <script>
+        // Check if the browser supports speech recognition
+    if ('webkitSpeechRecognition' in window) {
+    // Create a new instance of SpeechRecognition
+    const recognition = new webkitSpeechRecognition();
+
+    // Set properties for the recognition
+    recognition.lang = 'en-US' , 'ms-MY' ; // Set the language for speech recognition
+    recognition.continuous = false; // Set to true for continuous recognition
+
+    // Define event handlers
+    recognition.onstart = function() {
+        document.getElementById("status").innerHTML =  "Speech recognition started";
+    };
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript; // Get the transcribed speech
+        document.getElementById("output").innerHTML = document.getElementById("output").innerHTML+ " " + transcript;        // You can do whatever you want with the transcribed text here
+    };
+
+    recognition.onerror = function(event) {
+        document.getElementById("status").innerHTML = "Speech recognition error: " + event.error;
+    };
+
+    recognition.onend = function() {
+        document.getElementById("status").innerHTML = 'Speech recognition ended';
+    };
+
+    // Start speech recognition
+    document.getElementById('startButton').addEventListener('click', function() {
+        recognition.start();
+    }),
+    document.getElementById('stopButton').addEventListener('click', function() {
+        recognition.stop();
+    })
+    ;
+} else {
+    console.error('Speech recognition not supported in this browser');
+}
+
+
+</script>
+</body>
+</html>
