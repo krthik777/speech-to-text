@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>speech to text</title>
     <style>
+        .body{
+                background-color:antiquewhite;
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
         .buttonstart{
             background-color: #0d7011; /* Green */
             border: none;
@@ -17,6 +23,10 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 20px;
+        }
+        .buttonstart:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            
         }
         .buttonstop{
             background-color: #a21111; /* Green */
@@ -31,6 +41,10 @@
             cursor: pointer;
             border-radius: 20px;
         }
+        .buttonstop:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            
+        }
         .buttonclear{
             background-color: #858585; /* Green */
             border: none;
@@ -43,7 +57,35 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 20px;
+
         }
+        .container{
+            text-align: center;
+            margin-top: 100px;
+            margin: 0 auto; /* Add this line to center align the container */
+            border:#858585;
+            width:90%;
+            height:auto;
+            max-width: 700;
+        }
+        .h1{
+            color: #0d7011;
+            text-decoration:line-through;
+
+        }
+        #status{
+            color: red;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            transition: transform 0.3s ease;
+        }
+        #status:hover {
+            transform: scale(1.1);
+            background-color: #bf23ca;
+            transition: transform 0.3s ease;
+          }
     </style>
 </head>
 <body>
@@ -57,12 +99,12 @@
         
         <div id="text"></div>
     </div>
-    <span>status:
+    <span>Status:
         <span id="status">
         </span>
     </span>
     <div>
-        <h1>results here:</h1>
+        <h1>RESULTS HERE:</h1>
         <div style="border-color: black;" id="output" name = "out"></div>
         <button id = "reset" class = "buttonclear" >clear</button>
     </div>
